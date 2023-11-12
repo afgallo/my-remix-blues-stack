@@ -127,8 +127,10 @@ jobs:
       - name: ⬇️  Checkout repo
         uses: actions/checkout@v4
 
-      - name: 🗺️ Setup Kamal
-        run: gem install kamal --user-install
+      - name: 🗺️ Install Kamal
+        run: |
+          gem install kamal --user-install
+          echo "export PATH=$(ruby -r rubygems -e 'puts Gem.user_dir')/bin:$PATH" >> $GITHUB_ENV
 
       - name: 🚀 Deploy Staging
         if: ${{ github.ref == 'refs/heads/develop' }}
