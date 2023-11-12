@@ -1,0 +1,36 @@
+# Name of your application. Used to uniquely configure containers.
+service: my-blues-stack
+
+# Name of the container image.
+image: afgallo/my-blues-stack
+
+registry:
+  username: afgallo
+  password:
+    - DOCKER_REGISTRY_TOKEN
+
+servers:
+  web:
+    - 139.180.178.232
+
+env:
+  clear:
+    - NODE_ENV: production
+  secret:
+    - SESSION_SECRET
+    - DATABASE_URL
+
+accessories:
+  db:
+    image: postgres:alpine
+    host: 139.180.180.60
+    port: 5432
+    env:
+      secret:
+        - POSTGRES_USER
+        - POSTGRES_PASSWORD
+        - POSTGRES_DB
+    directories:
+      - postgres-data:/var/lib/postgres/data
+healthcheck:
+  path: /healthcheck
