@@ -124,11 +124,11 @@ jobs:
     # only deploy main/develop branch on pushes
     if: ${{ (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop') && github.event_name == 'push' }}
     steps:
-      - name: ⬇️ Checkout repo
+      - name: ⬇️  Checkout repo
         uses: actions/checkout@v4
 
       - name: 🗺️ Setup Kamal
-        run: gem install kamal
+        run: gem install kamal --user-install
 
       - name: 🚀 Deploy Staging
         if: ${{ github.ref == 'refs/heads/develop' }}
