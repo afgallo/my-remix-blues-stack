@@ -4,8 +4,8 @@ FROM node:18-bullseye-slim as base
 # set for base and all layer that inherit from it
 ENV NODE_ENV production
 
-# Install openssl for Prisma
-RUN apt-get update && apt-get install -y openssl
+# Install openssl for Prisma and curl for healthcheck
+RUN apt-get update && apt-get install -y openssl curl
 
 # Install all node_modules, including dev dependencies
 FROM base as deps
