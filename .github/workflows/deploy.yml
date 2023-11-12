@@ -129,8 +129,10 @@ jobs:
 
       - name: 🗺️ Install Kamal
         run: |
+          ruby -r rubygems -e 'puts Gem.user_dir'
           gem install kamal --user-install
-          echo "export PATH=$(ruby -r rubygems -e 'puts Gem.user_dir')/bin:$PATH" >> $GITHUB_ENV
+          #echo "export PATH=$(ruby -r rubygems -e 'puts Gem.user_dir')/bin:$PATH" >> $GITHUB_ENV
+          echo "$(ruby -r rubygems -e 'puts Gem.user_dir')/bin" >> $GITHUB_PATH
 
       - name: 🚀 Deploy Staging
         if: ${{ github.ref == 'refs/heads/develop' }}
