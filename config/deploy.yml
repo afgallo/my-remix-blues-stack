@@ -1,7 +1,5 @@
-# Name of your application. Used to uniquely configure containers.
 service: my-blues-stack
 
-# Name of the container image.
 image: afgallo/my-blues-stack
 
 registry:
@@ -33,5 +31,6 @@ accessories:
         - POSTGRES_PASSWORD
     directories:
       - postgres-data:/var/lib/postgres/data
+
 healthcheck:
   path: /healthcheck
