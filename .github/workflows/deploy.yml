@@ -127,15 +127,22 @@ jobs:
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v4
 
-      - name: 🎈 Setup Kamal
-        run: echo "This is where we will set up Kamal"
+      - name: 🗺️ Setup Kamal
+        run: gem install kamal
 
       - name: 🚀 Deploy Staging
         if: ${{ github.ref == 'refs/heads/develop' }}
-        run: echo "This is where we call Kamal to deploy"
-
+        run: kamal deploy
+        env:
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
+          DOCKER_REGISTRY_TOKEN: ${{ secrets.DOCKER_REGISTRY_TOKEN }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
       - name: 🚀 Deploy Production
         if: ${{ github.ref == 'refs/heads/main' }}
-        run: echo "This is where we call $TOOL to deploy"
+        run: kamal deploy
         env:
-          TOOL: kamal
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
+          DOCKER_REGISTRY_TOKEN: ${{ secrets.DOCKER_REGISTRY_TOKEN }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
