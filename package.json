@@ -20,7 +20,13 @@
     "pretest:e2e:run": "npm run build",
     "test:e2e:run": "cross-env PORT=8811 start-server-and-test start:mocks http://localhost:8811 \"npx cypress run --browser chrome\"",
     "typecheck": "tsc && tsc -p cypress",
-    "validate": "run-p \"test -- --run\" lint typecheck test:e2e:run"
+    "validate": "run-p \"test -- --run\" lint typecheck test:e2e:run",
+    "terraform:init": "./terraform.sh init",
+    "terraform:plan": "./terraform.sh plan",
+    "terraform:apply": "./terraform.sh apply",
+    "terraform:destroy": "./terraform.sh destroy",
+    "terraform:validate": "./terraform.sh validate",
+    "terraform:fmt": "./terraform.sh fmt"
   },
   "prettier": {},
   "eslintIgnore": [
