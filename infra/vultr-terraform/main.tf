@@ -12,15 +12,19 @@ provider "vultr" {
 }
 
 module "web_servers" {
-  source = "./modules/web-server"
+  source     = "./modules/web-server"
+  vpc_id     = var.vpc_id
+  ssh_key_id = var.ssh_key_id
 }
 
 module "db_server" {
-  source = "./modules/db-server"
+  source     = "./modules/db-server"
+  vpc_id     = var.vpc_id
+  ssh_key_id = var.ssh_key_id
 }
 
 module "load_balancer" {
   source           = "./modules/load-balancer"
-  attached_servers = [module.web_servers.web01.id, module.web_server.web02.id]
+  attached_servers = [module.web_servers.web_01_instance_id, module.web_servers.web_01_instance_id]
 }
 

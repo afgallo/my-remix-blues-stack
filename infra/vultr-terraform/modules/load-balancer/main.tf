@@ -1,3 +1,12 @@
+terraform {
+  required_providers {
+    vultr = {
+      source  = "vultr/vultr"
+      version = "2.17.1"
+    }
+  }
+}
+
 resource "vultr_load_balancer" "load_balancer" {
   region = var.region
   label  = "Web Load Balancer"
@@ -19,11 +28,11 @@ resource "vultr_load_balancer" "load_balancer" {
     healthy_threshold   = 5
   }
 
-  attached_instances = [var.attached_servers]
+  attached_instances = var.attached_servers
 
   firewall_rules {
-    protocol = "tcp"
-    port     = "80"
-    source   = "0.0.0.0/0"
+    ip_type = "v4"
+    port    = "80"
+    source  = "0.0.0.0/0"
   }
 }
