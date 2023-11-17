@@ -6,6 +6,6 @@ variable "region" {
 
 variable "ip_block" {
   description = "IP block for network"
-  type        = number
-  default     = 24
+  type        = string
+  default     = "10.0.0.0"
 }

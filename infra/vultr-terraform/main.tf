@@ -15,16 +15,20 @@ module "firewall" {
   source = "./modules/firewall"
 }
 
+module "vpc2" {
+  source = "./modules/vpc2/"
+}
+
 module "web_servers" {
   source            = "./modules/web-server"
-  vpc_id            = var.vpc_id
+  vpc2_ids          = module.vpc2.vpc2_ids
   ssh_key_id        = var.ssh_key_id
   firewall_group_id = module.firewall.firewall_group_id
 }
 
 module "db_server" {
   source            = "./modules/db-server"
-  vpc_id            = var.vpc_id
+  vpc2_ids          = module.vpc2.vpc2_ids
   ssh_key_id        = var.ssh_key_id
   firewall_group_id = module.firewall.firewall_group_id
 }
