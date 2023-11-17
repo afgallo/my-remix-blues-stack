@@ -1,11 +1,11 @@
-output "web01_instance_id" {
-  value = vultr_instance.web01.id
+output "web01_instance_ip" {
+  value = vultr_instance.web01.main_ip
 }
 
-output "web02_instance_id" {
-  value = vultr_instance.web02.id
+output "web02_instance_ip" {
+  value = vultr_instance.web02.main_ip
 }
 
-output "instance_ids" {
+output "web_instance_ids" {
   value = [vultr_instance.web01.id, vultr_instance.web02.id]
 }
