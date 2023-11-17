@@ -1,12 +1,12 @@
-output "web_server_1_ip" {
-  value = module.web_servers.web_01_instance_id
+output "web_server_1_id" {
+  value = module.web_servers.web01_instance_id
 }
 
-output "web_server_2_ip" {
-  value = module.web_servers.web_02_instance_id
+output "web_server_2_id" {
+  value = module.web_servers.web02_instance_id
 }
 
-output "db_server_ip" {
+output "db_server_id" {
   value = module.db_server.db_instance_id
 }
 

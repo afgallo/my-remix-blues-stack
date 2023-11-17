@@ -25,6 +25,6 @@ module "db_server" {
 
 module "load_balancer" {
   source           = "./modules/load-balancer"
-  attached_servers = [module.web_servers.web_01_instance_id, module.web_servers.web_01_instance_id]
+  attached_servers = module.web_servers.instance_ids
 }
 
