@@ -21,12 +21,12 @@ variable "ssh_key_id" {
   type        = string
 }
 
-variable "vpc_id" {
-  description = "The VPC 2.0 id"
-  type        = string
-}
-
 variable "firewall_group_id" {
   description = "The firewall group id"
   type        = string
+}
+
+variable "vpc2_ids" {
+  description = "The vpc2 ids"
+  type        = list(string)
 }
