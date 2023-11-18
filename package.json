@@ -28,7 +28,9 @@
     "tf:validate": "./terraform.sh validate",
     "tf:fmt": "./terraform.sh fmt"
   },
-  "prettier": {},
+  "prettier": {
+    "printWidth": 120
+  },
   "eslintIgnore": [
     "/node_modules",
     "/build",

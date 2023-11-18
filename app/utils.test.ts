@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 
-import { validateEmail, safeRedirect, useMatchesData } from "./utils";
+import { validateEmail, safeRedirect } from "./utils";
 
 const DEFAULT_REDIRECT = "/";
 
