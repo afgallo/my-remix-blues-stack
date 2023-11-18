@@ -17,13 +17,20 @@ vi.mock("~/db.server", () => ({
 
 describe("note model", () => {
   beforeEach(() => {
-    vi.resetAllMocks();
+    vi.clearAllMocks();
   });
 
   it("should retrieve a note for a given id and userId", async () => {
-    const mockNote = { id: "1", title: "Test", body: "Test Body" };
+    const mockNote = {
+      id: "1",
+      title: "Test Note",
+      body: "Test Body",
+      userId: "user1",
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
 
-    prisma.note.findFirst.mockResolvedValue(mockNote);
+    vi.mocked(prisma.note.findFirst).mockResolvedValue(mockNote);
 
     const result = await model.getNote({ id: "1", userId: "user1" });
 
@@ -36,11 +43,11 @@ describe("note model", () => {
 
   it("should retrieve a list of note items for a given userId", async () => {
     const mockNotes = [
-      { id: "1", title: "Note 1" },
-      { id: "2", title: "Note 2" },
+      { id: "1", title: "Note 1", body: "Test Body", userId: "user1", createdAt: new Date(), updatedAt: new Date() },
+      { id: "2", title: "Note 2", body: "Test Body", userId: "user1", createdAt: new Date(), updatedAt: new Date() },
     ];
 
-    prisma.note.findMany.mockResolvedValue(mockNotes);
+    vi.mocked(prisma.note.findMany).mockResolvedValue(mockNotes);
 
     const result = await model.getNoteListItems({ userId: "user1" });
 
@@ -58,9 +65,11 @@ describe("note model", () => {
       title: "New Note",
       body: "This is a new note.",
       userId: "user1",
+      createdAt: new Date(),
+      updatedAt: new Date(),
     };
 
-    prisma.note.create.mockResolvedValue(newNote);
+    vi.mocked(prisma.note.create).mockResolvedValue(newNote);
 
     const result = await model.createNote({
       title: newNote.title,
