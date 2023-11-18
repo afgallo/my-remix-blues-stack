@@ -24,20 +24,8 @@ export default function handleRequest(
   loadContext: AppLoadContext,
 ) {
   return isbot(request.headers.get("user-agent"))
-    ? handleBotRequest(
-        request,
-        responseStatusCode,
-        responseHeaders,
-        remixContext,
-        loadContext,
-      )
-    : handleBrowserRequest(
-        request,
-        responseStatusCode,
-        responseHeaders,
-        remixContext,
-        loadContext,
-      );
+    ? handleBotRequest(request, responseStatusCode, responseHeaders, remixContext, loadContext)
+    : handleBrowserRequest(request, responseStatusCode, responseHeaders, remixContext, loadContext);
 }
 
 function handleBotRequest(
@@ -51,11 +39,7 @@ function handleBotRequest(
   return new Promise((resolve, reject) => {
     const { abort, pipe } = renderToPipeableStream(
       <NonceProvider value={nonce}>
-        <RemixServer
-          context={remixContext}
-          url={request.url}
-          abortDelay={ABORT_DELAY}
-        />
+        <RemixServer context={remixContext} url={request.url} abortDelay={ABORT_DELAY} />
       </NonceProvider>,
       {
         onAllReady() {
@@ -97,11 +81,7 @@ function handleBrowserRequest(
   return new Promise((resolve, reject) => {
     const { abort, pipe } = renderToPipeableStream(
       <NonceProvider value={nonce}>
-        <RemixServer
-          context={remixContext}
-          url={request.url}
-          abortDelay={ABORT_DELAY}
-        />
+        <RemixServer context={remixContext} url={request.url} abortDelay={ABORT_DELAY} />
       </NonceProvider>,
       {
         onShellReady() {

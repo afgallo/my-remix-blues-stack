@@ -48,9 +48,7 @@ export default function NotesPage() {
               {data.noteListItems.map((note) => (
                 <li key={note.id}>
                   <NavLink
-                    className={({ isActive }) =>
-                      `block border-b p-4 text-xl ${isActive ? "bg-white" : ""}`
-                    }
+                    className={({ isActive }) => `block border-b p-4 text-xl ${isActive ? "bg-white" : ""}`}
                     to={note.id}
                   >
                     📝 {note.title}

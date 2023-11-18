@@ -7,3 +7,11 @@ node_modules
 /cypress/screenshots
 /cypress/videos
 /postgres-data
+coverage
+
+*.tfvars
+
+.terraform
+
+terraform.tfstate
+terraform.tfstate.backup
